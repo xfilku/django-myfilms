@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block title %} Lista Filmów {% endblock %}
+
+{% block page %} 
+        <div class="container">
+            <div class="d-flex flex-column gap-4 align-items-center">
+                {% if films|length == 0 %}
+                    <p>Nie ma filmów</p>
+                    <a href="{% url 'add_film' %}"><button>Dodaj film</button></a>
+                {% else %}
+                    <a href="{% url 'add_film' %}" class="btn btn-primary">Dodaj film</a>
+                        {% for film in films %}
+                            <div class="card w-75" style="padding: 5px; border-radius: 20px;">
+                                <img src="../media/{{film.poster}}" class="card-img-top" alt="{{ film }}" style="max-height: 200px; object-fit: contain;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ film }}</h5>
+                                    <p class="card-text" style="color: black;">{{ film.description }}</p>
+                                    <a href="{% url 'edit_film' film.id %}" class="btn btn-primary">Edytuj</a>
+                                    <a href="{% url 'delete_film' film.id %}" class="btn btn-danger">Usuń</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        <p>Ilość filmów w BD: {{films|length}}</p>
+    {% endif %}
+{% endblock %}
