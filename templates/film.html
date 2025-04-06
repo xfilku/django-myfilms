@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+
+{% block title %} Pokaż Film {% endblock %}
+
+{% block page %}
+    <div class="container d-flex justify-content-center my-5">
+        <div class="card mb-3" style="max-width: 80%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 15px;">
+            <div class="position-relative">
+                <!-- Przycisk powrotu w prawym górnym rogu -->
+                <a href="{% url 'all_films' %}" class="btn btn-secondary position-absolute top-0 end-0 m-3">Powrót</a>
+
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <img src="../media/{{ film.poster }}" class="img-fluid rounded-start" alt="Film Poster" style="border-radius: 15px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ film.title }}</h5>
+                            <p class="card-text">{{ film.description }}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                        <!-- Sekcja opinii przeniesiona na koniec z przewijaniem -->
+                        <div class="card-body" style="max-height: 380px; overflow-y: auto;">
+                            <h5 class="card-title d-flex justify-content-between align-items-center">
+                                Opinie
+                                <!-- Przycisk plusa w sekcji opinii -->
+                                <a href="#" class="btn btn-success" style="border-radius: 50%; width: 40px; height: 40px; text-align: center; padding: 5px;">
+                                    <i class="fas fa-plus" style="color: white;"></i>
+                                </a>
+                            </h5>
+                            {% for rating in ratings %}
+                                <p class="card-text">{{ rating.rating }}</p>
+                                <p class="card-text"><small class="text-muted">{{ rating.description }}</small></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

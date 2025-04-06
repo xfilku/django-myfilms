@@ -16,6 +16,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ film }}</h5>
                                     <p class="card-text" style="color: black;">{{ film.description }}</p>
+                                    <a href="{% url 'show_film' film.id %}" class="btn btn-primary">Pokaż</a>
                                     <a href="{% url 'edit_film' film.id %}" class="btn btn-primary">Edytuj</a>
                                     <a href="{% url 'delete_film' film.id %}" class="btn btn-danger">Usuń</a>
                                 </div>

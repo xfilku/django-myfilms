@@ -10,6 +10,7 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|bootstrap }}
+                    {{ form_additional_info|bootstrap }}
                     <br>
                     <button type="submit" class="btn btn-primary">Dodaj</button>
                 </form>
